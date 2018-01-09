@@ -1,0 +1,28 @@
+    apply plugin: 'java'
+    apply plugin: 'application'
+
+
+    applicationDefaultJvmArgs = ["-Xmx2G"]
+
+
+    mainClassName = project.properties.getOrDefault('mainClass', 'com.sample.main.Main')
+
+
+    sourceCompatibility = 8
+
+
+    repositories {
+      jcenter()
+      maven { url "http://packages.confluent.io/maven/" }
+    }
+
+
+    tasks.withType(JavaCompile) {
+      options.compilerArgs << "-Xlint:unchecked"
+    }
+
+
+    dependencies {
+      compile "io.vertx:vertx-web:3.5.0"
+      compile 'ch.qos.logback:logback-classic:1.2.3'
+    }
